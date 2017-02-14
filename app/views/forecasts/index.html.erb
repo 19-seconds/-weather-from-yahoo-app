@@ -1,0 +1,31 @@
+<h1>Current Weather </h1>
+<%= form_tag "/forecasts", method: :get do %>
+  <div>
+    City<input type="text" name="city">
+  </div>
+  <div>
+    Country<input type="text" name="country">
+  </div>
+  <div>
+    <input type="submit" value="Choose Location">
+  </div>
+<% end %>
+<h2><%= @location_and_time %></h2>
+<h2>Current Date<%= @forecast["date"] %></h2>
+<h2>Current Temp: <%= @forecast["temp"] %> F</h2>
+<h2>Current Conditions: <%= @forecast["text"] %></h2>
+
+<table>
+  <tr>
+    <th>Date</th>
+    <th>Low</th>
+    <th>High</th>
+  </tr>
+  <% @five_day_forecasts.each do |forecast| %>
+    <tr>
+      <td><%= forecast["date"] %></td>
+      <td><%= forecast["low"] %></td>
+      <td><%= forecast["high"] %></td>
+    </tr>
+  <% end %>
+</table>
